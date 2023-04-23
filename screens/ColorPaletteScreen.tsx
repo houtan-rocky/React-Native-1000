@@ -1,48 +1,14 @@
 import React from 'react';
-import {View, SafeAreaView, StyleSheet, SectionList, Text} from 'react-native';
-import ColorBox from '../components/ColorBox';
+import {View, StyleSheet} from 'react-native';
+import ColorPalette from '../components/ColorPalette';
 
-const ColorPalette = () => {
-  const DATA = [
-    {
-      title: 'Boxes',
-      data: [
-        {colorName: 'Black', hexCode: '#111'},
-        {colorName: 'Red', hexCode: '#ff0000'},
-        {colorName: 'Blue', hexCode: '#0000ff'},
-        {colorName: 'Green', hexCode: '#00ff00'},
-      ],
-    },
-    {
-      title: 'Hoxes',
-      data: [
-        {colorName: 'Black', hexCode: '#111'},
-        {colorName: 'Red', hexCode: '#ff0000'},
-        {colorName: 'Blue', hexCode: '#0000ff'},
-        {colorName: 'Green', hexCode: '#00ff00'},
-      ],
-    },
-  ];
+const ColorPaletteScreen = (props: any) => {
+  const {params} = props.route;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View>
-        <SectionList
-          ListHeaderComponent={<Text>Header</Text>}
-          ListFooterComponent={<Text>Footer</Text>}
-          sections={DATA}
-          contentContainerStyle={styles.container}
-          keyExtractor={item => item.colorName}
-          renderItem={({item}) => {
-            return (
-              <View>
-                <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
-              </View>
-            );
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.pageControl}>
+      <ColorPalette DATA={params.DATA} paletteName={params.paletteName} />
+    </View>
   );
 };
 
@@ -52,11 +18,13 @@ const styles = StyleSheet.create({
   },
   container: {
     display: 'flex',
-    gap: 10,
-  },
-  safeArea: {
-    flex: 1,
     padding: 10,
+    flex: 1,
+    gap: 10,
+    backgroundColor: '#fff',
+  },
+  pageControl: {
+    flex: 1,
   },
   header__text: {
     paddingTop: 20,
@@ -65,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorPalette;
+export default ColorPaletteScreen;

@@ -13,9 +13,13 @@ const ColorBox: FC<IColorBoxProps> = props => {
   };
   return (
     <View>
-      <Text style={[styles.box, boxColor]}>
-        {colorName}: {hexCode}
-      </Text>
+      <View style={[styles.box, boxColor]}>
+        {colorName && boxColor ? (
+          <Text style={[styles.box, boxColor]}>
+            {colorName}: {colorName ? hexCode : ''}
+          </Text>
+        ) : null}
+      </View>
     </View>
   );
 };
@@ -23,6 +27,8 @@ const ColorBox: FC<IColorBoxProps> = props => {
 const styles = StyleSheet.create({
   box: {
     color: '#fff',
+    minWidth: 50,
+    minHeight: 50,
     paddingVertical: 10,
     textAlign: 'center',
   },

@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import ColorPaletteScreen from './screens/ColorPaletteScreen';
+import Gallery from './screens/Gallery';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ColorPaletteScreen} />
+        <Stack.Screen name="Gallery" component={Gallery} />
+        <Stack.Screen name="ColorPalette" component={ColorPaletteScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
