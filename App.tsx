@@ -3,19 +3,37 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import ColorPaletteScreen from './screens/ColorPaletteScreen';
-import Gallery from './screens/Gallery';
+import PalettesGallery from './screens/PalettesGalleryScreen';
+import ColorPaletteModal from './screens/ColorPaletteModalScreen';
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Gallery" component={Gallery} />
-        <Stack.Screen name="ColorPalette" component={ColorPaletteScreen} />
-      </Stack.Navigator>
+      <RootStack.Navigator>
+        <RootStack.Screen
+          name="Main"
+          component={MainStackScreen}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="ColorPaletteModal"
+          component={ColorPaletteModal}
+        />
+      </RootStack.Navigator>
     </NavigationContainer>
+  );
+};
+
+const MainStackScreen = () => {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={HomeScreen} />
+      <MainStack.Screen name="Gallery" component={PalettesGallery} />
+      <MainStack.Screen name="ColorPalette" component={ColorPaletteScreen} />
+    </MainStack.Navigator>
   );
 };
 

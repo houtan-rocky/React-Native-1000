@@ -1,5 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, RefreshControl} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  RefreshControl,
+  TouchableOpacity,
+} from 'react-native';
 import PalettePreview from '../components/PalettePreview';
 
 const initialData = [
@@ -35,7 +42,7 @@ const initialData = [
   },
 ];
 
-const Gallery = (props: any) => {
+const PalettesGallery = (props: any) => {
   const {navigation} = props;
   const [DATA, setDATA] = useState(initialData);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -75,6 +82,20 @@ const Gallery = (props: any) => {
       <FlatList
         data={DATA}
         keyExtractor={item => item.paletteName}
+        ListHeaderComponent={
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#436657',
+              width: 100,
+              padding: 5,
+              borderRadius: 5,
+            }}
+            onPress={() => {
+              navigation.navigate('ColorPaletteModal');
+            }}>
+            <Text>Launch Modal</Text>
+          </TouchableOpacity>
+        }
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh}>
             {' '}
@@ -106,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Gallery;
+export default PalettesGallery;
