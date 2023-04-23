@@ -1,24 +1,26 @@
 import React from 'react';
-import {View, StyleSheet, SectionList, Text} from 'react-native';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import ColorBox from './ColorBox';
 
 const ColorPalette = (props: any) => {
   const {DATA, paletteName} = props;
 
   return (
-    <SectionList
-      ListHeaderComponent={<Text>{paletteName}</Text>}
-      sections={DATA}
-      contentContainerStyle={styles.container}
-      keyExtractor={item => item.colorName}
-      renderItem={({item}) => {
-        return (
-          <View>
-            <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
-          </View>
-        );
-      }}
-    />
+    <View style={styles.pageControl}>
+      <FlatList
+        ListHeaderComponent={<Text>{paletteName}</Text>}
+        data={DATA}
+        contentContainerStyle={styles.container}
+        keyExtractor={item => item.colorName}
+        renderItem={({item}) => {
+          return (
+            <View>
+              <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
+            </View>
+          );
+        }}
+      />
+    </View>
   );
 };
 
@@ -29,7 +31,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     padding: 10,
-    flex: 1,
     gap: 10,
     backgroundColor: '#fff',
   },

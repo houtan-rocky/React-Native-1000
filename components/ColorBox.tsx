@@ -29,8 +29,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     minWidth: 50,
     minHeight: 50,
-    paddingVertical: 10,
     textAlign: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 1,
+    elevation: 2,
   },
 });
 
